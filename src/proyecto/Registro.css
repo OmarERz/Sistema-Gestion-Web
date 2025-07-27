@@ -1,0 +1,65 @@
+/* src/proyecto/Registro.css */
+
+/* Variables de tema */
+:root {
+  --primary: #3a557c;   /* Azul oscuro */
+  --secondary: #8fc027; /* Verde lima */
+  --neutral: #a6a6a6;   /* Gris neutro */
+}
+
+/* Contenedor del formulario */
+.register-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #ffffff;        /* Blanco para contraste */
+  border: 1px solid var(--neutral); /* Borde gris neutro */
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Título */
+.register-container h2 {
+  margin-bottom: 1rem;
+  color: var(--primary); /* Azul oscuro */
+}
+
+/* Grupo de campos */
+.form-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--primary); /* Azul oscuro */
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--neutral); /* Gris neutro */
+  border-radius: 4px;
+  background-color: #f7f7f7;         /* Mantiene gris claro original */
+}
+
+/* Botón + */
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

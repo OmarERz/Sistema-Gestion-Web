@@ -1,0 +1,163 @@
+/* dashboard.css */
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo y tipografía general */
+body {
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+
+/* Encabezado (header) */
+.header {
+  background-color: #3a557c; /* Azul oscuro */
+  padding: 1rem;
+  color: #ffffff;
+}
+
+.header-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo o título principal */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+/* Barra de navegación */
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+  color: #dddddd;
+}
+
+/* Sección principal */
+.main-content {
+  width: 90%;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+/* Títulos de sección */
+.section-title {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #a6a6a6; /* Gris neutro */
+}
+
+/* Contenedor para el select */
+.select-container {
+  margin-bottom: 1rem;
+}
+
+.select {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Tablas */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+.table th {
+  background-color: #a6a6a6; /* Gris neutro */
+  color: #fff;
+}
+
+/* Contenedor de botones */
+.buttons-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Clase base para todos los botones */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #a6a6a6; /* Gris neutro por defecto */
+  color: #fff;
+}
+
+/* Botón primario */
+.btn-primary {
+  background-color: #3a557c; /* Azul oscuro */
+}
+.btn-primary:hover {
+  background-color: #2f4663; /* Azul más oscuro */
+}
+
+/* Botón success */
+.btn-success {
+  background-color: #8fc027; /* Verde lima */
+}
+.btn-success:hover {
+  background-color: #7cae1f; /* Verde lima oscuro */
+}
+
+/* Botón danger : solo rojo al hover */
+.btn-danger {
+  background-color: #a6a6a6; /* Gris neutro por defecto */
+  color: #fff;
+}
+.btn-danger:hover {
+  background-color: #dc3545; /* Rojo estándar al pasar el ratón */
+}
+
+/* Barra de progreso */
+.progress {
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 30px;
+  margin-top: 1rem;
+}
+
+.progress-bar {
+  background-color: #3a557c; /* Azul oscuro */
+  height: 100%;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  transition: width 0.3s ease;
+}
