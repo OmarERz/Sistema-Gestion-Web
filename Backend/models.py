@@ -152,7 +152,6 @@ class Maestro(db.Model):
 
     # Relaciones 1:N
     asistencias = db.relationship('AsistenciaMaestro', back_populates='maestro')
-    inasistencias = db.relationship('InasistenciaMaestro', back_populates='maestro')
     pagos = db.relationship('PagoMaestro', back_populates='maestro')
 
 
@@ -168,19 +167,6 @@ class AsistenciaMaestro(db.Model):
 
     # Relación inversa
     maestro = db.relationship('Maestro', back_populates='asistencias')
-
-
-# -------------------------------
-# Modelo InasistenciaMaestro
-# -------------------------------
-class InasistenciaMaestro(db.Model):
-    __tablename__ = 'inasistencias_maestros'
-    id = db.Column(db.Integer, primary_key=True)                        # ID único de la inasistencia
-    maestro_id = db.Column(db.Integer, db.ForeignKey('maestros.id'), nullable=False)
-    fecha = db.Column(db.Date, nullable=False)                          # Fecha de falta
-
-    # Relación inversa
-    maestro = db.relationship('Maestro', back_populates='inasistencias')
 
 
 # -------------------------------

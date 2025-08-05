@@ -16,7 +16,6 @@ from .uniformes              import uniformes_bp
 from .uniformes_pendientes   import uniformes_pendientes_bp
 from .pagos_maestros         import pagos_maestros_bp
 from .asistencias_maestros   import asistencias_maestros_bp
-from .inasistencias_maestros import inasistencias_maestros_bp
 
 # Exporta los nombres para facilitar imports con *
 __all__ = [
@@ -33,5 +32,4 @@ __all__ = [
     "uniformes_pendientes_bp",
     "pagos_maestros_bp",
     "asistencias_maestros_bp",
-    "inasistencias_maestros_bp",
 ]
