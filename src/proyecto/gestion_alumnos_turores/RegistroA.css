@@ -1,0 +1,58 @@
+/* Estilo para el formulario de registro */
+.registro-form {
+  background-color: #1e1e2f;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  max-width: 700px;
+  margin: 2rem auto;
+  color: #ffffff;
+}
+
+.form-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #4ea8de;
+  text-align: center;
+}
+
+/* Fila de dos columnas */
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-row input,
+.form-row select {
+  flex: 1;
+  padding: 0.6rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #2a2a3d;
+  color: #ffffff;
+}
+
+.form-row input::placeholder {
+  color: #bbbbbb;
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.form-actions .btn-primary {
+  background-color: #4ea8de;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-actions .btn-primary:hover {
+  background-color: #3b94c4;
+}

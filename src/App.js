@@ -4,17 +4,15 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Importa el componente Login desde la carpeta "proyecto"
 import Login from "./proyecto/Login";
-// Importa el componente index desde la carpeta "proyecto"
-import Index from "./proyecto/index";
-// Importa el componente crud desde la carpeta "proyecto"
-import Crud from "./proyecto/crud";
-
-//Importa el componente Exito desde la carpeta "proyecto"
-//import ExitoF from "../src/proyecto/GraficaEF";
-
-
 // Importa el componente Registro desde la carpeta "proyecto"
 import Registro from "./proyecto/Registro";
+
+// Importa el componente index desde la carpeta "proyecto"
+import Menu from "./proyecto/Index";
+
+// Importa el componente descarag desde la carpeta "proyecto"
+import Descarga from "./proyecto/reporte/descarga"
+
 
 // Define el componente principal de la aplicación
 function App() {
@@ -25,15 +23,17 @@ function App() {
       <Routes>
         {/* Ruta raíz que carga el componente Login */}
         <Route path="/" element={<Login />} />
-        {/* Ruta '/Index' que carga el componente de dashboard
-        <Route path="/" element={<Menu />}/> */}
-        <Route path="/index" element={<Index/>}/>
-        {/* Ruta "/crud" que carga el componente de dash board*/}
-        <Route path="/crud" element={<Crud/>}/>
-       
-
         {/* Ruta "/registro" que carga el componente de dash board*/}
         <Route path="/registro" element={<Registro/>}/>
+        {/* Ruta '/Index' que carga el componente de dashboard
+        <Route path="/" element={<Menu />}/> */}
+        <Route path="/index" element={<Menu/>}/>
+        
+        {/* Ruta "/crud" que carga el componente de dash board*/}
+        <Route path="/descarga" element={<Descarga/>}/>
+       
+
+        
 
       </Routes>
     </Router>

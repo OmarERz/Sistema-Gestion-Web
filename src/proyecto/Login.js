@@ -30,7 +30,7 @@ function Login() {
     }
     try {
       // const API = process.env.REACT_APP_API_URL || "";
-      const response = await fetch('/validaAdmin', {
+      const response = await fetch('/', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

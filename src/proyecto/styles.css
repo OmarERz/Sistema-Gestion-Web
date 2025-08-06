@@ -60,7 +60,8 @@ body {
   max-width: 900px;
   margin: 2rem auto;
   padding: 1rem;
-  background-color: #ffffff;
+  background-color: #1a1a28;
+  color: #ffffff;
   border-radius: 8px;
 }
 
@@ -144,20 +145,64 @@ body {
   background-color: #dc3545; /* Rojo estándar al pasar el ratón */
 }
 
-/* Barra de progreso */
-.progress {
-  background-color: #ddd;
-  border-radius: 5px;
-  overflow: hidden;
-  height: 30px;
-  margin-top: 1rem;
+
+
+
+
+/* Layout general */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121218;
 }
 
-.progress-bar {
-  background-color: #3a557c; /* Azul oscuro */
-  height: 100%;
-  text-align: center;
-  line-height: 30px;
-  color: #fff;
-  transition: width 0.3s ease;
+/* Barra lateral izquierda */
+.sidebar {
+  width: 250px;
+  background-color: #1e1e2f; /* gris carbón */
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  box-shadow: 3px 0 15px rgba(0, 0, 0, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
+
+
+/* Título del dashboard */
+.sidebar .logo {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #4ea8de;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+/* Enlaces del menú */
+.sidebar .nav-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+  background-color: transparent;
+}
+
+/* Efecto al pasar el mouse */
+.sidebar .nav-item:hover {
+  background-color: #ffffff; /* amarillo fuerte */
+  color: #333;
+  border-left: 4px solid #00ffff; /* cian neón */
+  padding-left: 2.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
