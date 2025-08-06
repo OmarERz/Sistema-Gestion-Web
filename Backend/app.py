@@ -14,6 +14,12 @@ from routes.ciclos import ciclos_bp
 from routes.pagos import pagos_bp
 from routes.maestros import maestros_bp
 from routes.reportes import reportes_bp
+from routes.conceptos_pago         import conceptos_pago_bp
+from routes.alumnos_baja           import alumnos_baja_bp
+from routes.uniformes              import uniformes_bp
+from routes.uniformes_pendientes   import uniformes_pendientes_bp
+from routes.pagos_maestros         import pagos_maestros_bp
+from routes.asistencias_maestros   import asistencias_maestros_bp
 
 def create_app():
     """
@@ -41,6 +47,13 @@ def create_app():
     app.register_blueprint(pagos_bp,     url_prefix='/api/pagos')
     app.register_blueprint(maestros_bp,  url_prefix='/api/maestros')
     app.register_blueprint(reportes_bp,  url_prefix='/api/reportes')
+    app.register_blueprint(conceptos_pago_bp,       url_prefix='/api/conceptos_pago')
+    app.register_blueprint(alumnos_baja_bp,         url_prefix='/api/alumnos_baja')
+    app.register_blueprint(uniformes_bp,            url_prefix='/api/uniformes')
+    app.register_blueprint(uniformes_pendientes_bp, url_prefix='/api/uniformes_pendientes')
+    app.register_blueprint(pagos_maestros_bp,       url_prefix='/api/pagos_maestros')
+    app.register_blueprint(asistencias_maestros_bp, url_prefix='/api/asistencias_maestros')
+
 
     return app
 
