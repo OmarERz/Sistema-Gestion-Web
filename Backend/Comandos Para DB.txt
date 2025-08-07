@@ -1,0 +1,43 @@
+Definir la aplicación y el entorno Flask
+
+powershell
+Copiar
+Editar
+$Env:FLASK_APP  = "app.py"           # Le indica a la CLI de Flask dónde está tu app.
+$Env:FLASK_ENV  = "development"      # Activa el modo desarrollo (debug y recarga automática).
+Instalar las dependencias (si no lo has hecho aún)
+
+powershell
+Copiar
+Editar
+pip install Flask Flask-SQLAlchemy Flask-Migrate python-dotenv
+Inicializar el repositorio de migraciones
+
+powershell
+Copiar
+Editar
+flask db init                        # Crea la carpeta migrations/ con el esqueleto de Alembic.
+Generar la migración a partir de tus modelos actuales
+
+powershell
+Copiar
+Editar
+flask db migrate -m "Esquema inicial"  # Detecta cambios en models.py y crea un script de migración.
+Aplicar la migración (upgrade) y crear tu SQLite
+
+powershell
+Copiar
+Editar
+flask db upgrade                     # Ejecuta el script, crea cole_db.sqlite3 y las tablas en instance/.
+Arrancar el servidor Flask
+
+powershell
+Copiar
+Editar
+flask run                            # Inicia tu API en http://127.0.0.1:5000
+– (o bien, si prefieres)
+
+powershell
+Copiar
+Editar
+python app.py                        # Ejecuta tu aplicación directamente.
