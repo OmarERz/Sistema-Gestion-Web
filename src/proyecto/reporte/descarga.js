@@ -22,24 +22,25 @@ export default function DownloadGame() {
               <Link className="nav-item" to="/descarga">Descarga de Reportes</Link>
             </nav>
 
-        {/* Botón de descarga */}
-        <div style={{display: 'flex', justifyContent: 'center', margin: '8rem auto'}}>
-          <a href={Archivopdf} download="Documento.pdf">
-            <button
-              style={{
-                padding: '0.75rem 1.5rem',
-                fontSize: '1rem',
-                backgroundColor: '#007bff',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer'
-              }}
-            >
-              📥 Descargar Documento
-            </button>
-          </a>
-        </div>
+          {/* Botón de descarga */}
+          <div style={{display: 'flex', justifyContent: 'center', margin: '8rem auto'}}>
+            <a href={Archivopdf} download="Documento.pdf">
+              <button
+                style={{
+                  padding: '0.75rem 1.5rem',
+                  fontSize: '1rem',
+                  backgroundColor: '#007bff',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '5px',
+                  cursor: 'pointer'
+                }}
+              >
+                📥 Descargar Documento
+              </button>
+            </a>
+          </div>
+
       </div>
     </>
   );

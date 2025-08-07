@@ -1,24 +1,44 @@
 // src/proyecto/RegistroAlumno.js
 import React, { useEffect, useState } from 'react';
-import "../gestion_alumnos_turores/RegistroA.css";
+// import "./RegistroA.css";
+import TutorForm  from './TutorForm';
 
 function RegistroAlumno() {
-  const [alumno, setAlumno] = useState({
-    nombre: '',
-    apellido_paterno: '',
-    apellido_materno: '',
-    fecha_nacimiento: '',
-    grado: '',
-    grupo_id: '',
-    ciclo_id: '',
-  });
-
+    const [alumno, setAlumno] = useState({
+        nombre: '',
+        apellido_paterno: '',
+        apellido_materno: '',
+        fecha_nacimiento: '',
+        grado: '',
+        grupo_id: '',
+        ciclo_id: '',
+    });
+  
     const [mostrarFacturacion, setMostrarFacturacion] = useState(false);
     const [facturacion, setFacturacion] = useState({
         rfc: '',
         razon_social: '',
         domicilio: '',
         uso_cfdi: ''
+    });
+
+    const [tutor1, setTutor1] = useState({
+        nombre: '',
+        apellido_paterno: '',
+        apellido_materno: '',
+        telefono: '',
+        correo: '',
+        relacion_con_alumno: ''
+    });
+
+    const [mostrarTutor2, setMostrarTutor2] = useState(false);
+    const [tutor2, setTutor2] = useState({
+        nombre: '',
+        apellido_paterno: '',
+        apellido_materno: '',
+        telefono: '',
+        correo: '',
+        relacion_con_alumno: ''
     });
 
 
@@ -51,9 +71,12 @@ function RegistroAlumno() {
     e.preventDefault();
 
     const payload = {
-      ...alumno,
-      ...(mostrarFacturacion ? { facturacion } : {})  // incluye facturación solo si aplica
+        ...alumno,
+        tutor1,
+        ...(mostrarTutor2 ? { tutor2 } : {}),
+        ...(mostrarFacturacion ? { facturacion } : {})
     };
+
 
     try {
       const res = await fetch('/api/alumnos', {
@@ -63,7 +86,7 @@ function RegistroAlumno() {
       });
 
       if (res.ok) {
-        alert('Alumno registrado con éxito');
+        alert('Alumno y tutores registrados con éxito');
         setAlumno({ nombre: '', 
             apellido_paterno: '', 
             apellido_materno: '', 
@@ -72,6 +95,19 @@ function RegistroAlumno() {
             grupo_id: '',
             ciclo_id: '' 
         });
+        setTutor1({ nombre: '',
+            apellido_paterno: '',
+            apellido_materno: '',
+            telefono: '',
+            correo: '',
+            relacion_con_alumno: '' });
+        setTutor2({ nombre: '',
+            apellido_paterno: '',
+            apellido_materno: '',
+            telefono: '',
+            correo: '',
+            relacion_con_alumno: '' });
+        
         setFacturacion({
           rfc: '',
           razon_social: '',
@@ -173,6 +209,21 @@ function RegistroAlumno() {
                     </div>
                 </>
             )}
+            {/* Tutor Principal */}
+            <TutorForm tutor={tutor1} setTutor={setTutor1} titulo="Tutor Principal" requerido={true} />
+
+            {/* Segundo tutor opcional */}
+            <div className="form-row">
+            <label style={{ color: 'white' }}>
+                <input type="checkbox" checked={mostrarTutor2} onChange={(e) => setMostrarTutor2(e.target.checked)} />
+                &nbsp; Agregar segundo tutor
+            </label>
+            </div>
+
+            {mostrarTutor2 && (
+            <TutorForm tutor={tutor2} setTutor={setTutor2} titulo="Segundo Tutor (opcional)" requerido={false} />
+            )}
+
         
             <div className="form-actions">
                 <button type="submit" className="btn btn-primary">Registrar Alumno</button>

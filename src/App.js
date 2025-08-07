@@ -10,6 +10,15 @@ import Registro from "./proyecto/Registro";
 // Importa el componente index desde la carpeta "proyecto"
 import Menu from "./proyecto/Index";
 
+
+import Gestion_Grupos from "./proyecto/gestion_grupos/GestionGrupos";
+
+
+import Resgistro_Pagos from "./proyecto/registro_pagos/RegistroPago";
+
+
+import Historial_Pagos from "./proyecto/historial_pagos/HistorialAlumno";
+
 // Importa el componente descarag desde la carpeta "proyecto"
 import Descarga from "./proyecto/reporte/descarga"
 
@@ -28,7 +37,16 @@ function App() {
         {/* Ruta '/Index' que carga el componente de dashboard
         <Route path="/" element={<Menu />}/> */}
         <Route path="/index" element={<Menu/>}/>
-        
+
+        {/* Ruta "/crud" que carga el componente de dash board*/}
+        <Route path="/gestionGrupos" element={<Gestion_Grupos/>}/>
+
+        {/* Ruta "/crud" que carga el componente de dash board*/}
+        <Route path="/registroPagos" element={<Resgistro_Pagos/>}/>
+
+        {/* Ruta "/crud" que carga el componente de dash board*/}
+        <Route path="/historialPagos" element={<Historial_Pagos/>}/>
+
         {/* Ruta "/crud" que carga el componente de dash board*/}
         <Route path="/descarga" element={<Descarga/>}/>
        
