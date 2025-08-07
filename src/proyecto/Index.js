@@ -1,71 +1,131 @@
-// Importa React y hooks para trabajar con estado y efectos
 import React, { useEffect, useState } from "react";
-// Importa componente Link para navegación interna
 import { Link } from "react-router-dom";
-
-// Importa el componente Registro Alumnos
 import RegistroAlumno from "./gestion_alumnos_turores/RegistroAlumno";
-import RegistroTutor from "./gestion_alumnos_turores/RegistroTutor";
+import AlumnoDetalle from "./gestion_alumnos_turores/AlumnoDetalle";
 
-// Importa el archivo de estilos
 import "../proyecto/styles.css";
 
-// Componente principal que muestra el dashboard
 const Index = () => {
-  // Se crea estado para almacenar la lista de alumnos traidos de la API
   const [alumnos, setAlumnos] = useState([]);
+  const [filtro, setFiltro] = useState("");
+  const [vistaDetalle, setVistaDetalle] = useState(false);
+  const [alumnoSeleccionado, setAlumnoSeleccionado] = useState(null);
+  const [pagos, setPagos] = useState([]);
+  const [uniformes, setUniformes] = useState([]);
 
-
-  // Función que consulta el endpoint de alumnos en la API
   const fetchAlumnos = async () => {
     try {
-      // Realiza petición a la API en la URL dada
-      // const API = process.env.REACT_APP_API_URL || "";
-      // const res = await fetch(`${API}/alumno`);
       const res = await fetch("/api/alumnos");
-      // Si la respuesta es correcta, convierte a JSON y actualiza el estado
       if (res.ok) {
         const data = await res.json();
-        setAlumnos(data);
+        const conAdeudo = data.map((a) => ({
+          ...a,
+          adeudo_total: Math.floor(Math.random() * 5000), // simulado
+        }));
+        setAlumnos(conAdeudo);
       }
     } catch (error) {
-      // Muestra error en la consola si ocurre algún problema
       console.error("Error al obtener alumnos:", error);
     }
   };
 
-  // Se ejecuta la consulta al montar el componente
   useEffect(() => {
     fetchAlumnos();
   }, []);
 
+  const mostrarDetalleAlumno = async (id) => {
+    try {
+      const res = await fetch(`/api/alumnos/${id}/detalle`);
+      if (res.ok) {
+        const data = await res.json();
+        setAlumnoSeleccionado(data.alumno);
+        setPagos(data.pagos);
+        setUniformes(data.uniformes);
+        setVistaDetalle(true);
+      } else {
+        alert("No se pudo cargar el detalle del alumno.");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+    }
+  };
+
+  const alumnosFiltrados = alumnos.filter((a) =>
+    `${a.nombre} ${a.apellido_paterno} ${a.apellido_materno}`
+      .toLowerCase()
+      .includes(filtro.toLowerCase())
+  );
+
+
   return (
-    <>
-    {/*/ Encabezado de la página con navegación*/}
     <div className="layout">
       <nav className="sidebar">
-        {/* Enlace que muestra el logo y lleva a la misma página de dashboard*/}
-        <Link className="logo" to="/index">
-          Inicio
-        </Link>
-        {/* Menú de navegación interno a diferentes secciones del dashboard*/}
-        <Link className="nav-item" to="/">Gestión de Grupos</Link>
-        <Link className="nav-item" to="/">Registro de Pagos</Link>
-        <Link className="nav-item" to="/">Historial de Pagos</Link>
+        <Link className="logo" to="/index">Inicio</Link>
+        <Link className="nav-item" to="/gestionGrupos">Gestión de Grupos</Link>
+        <Link className="nav-item" to="/registroPagos">Registro de Pagos</Link>
+        <Link className="nav-item" to="/historialPagos">Historial de Pagos</Link>
         <Link className="nav-item" to="/">Gestión de Bajas</Link>
         <Link className="nav-item" to="/descarga">Descarga de Reportes</Link>
       </nav>
 
-        {/* Contenido principal de la página*/}
-        <main className="main-content">
-          {/* Sección para listar los alumnos obtenidos desde la API*/}
-            <RegistroAlumno/>
+      <main className="main-content">
+        {!vistaDetalle ? (
+          <>
+            <RegistroAlumno />
+            <h2 className="section-title">Lista de Alumnos</h2>
 
-            <RegistroTutor/>
-                 
-        </main>
-      </div>
-    </>
+            <input
+              type="text"
+              placeholder="Buscar alumno por nombre..."
+              value={filtro}
+              onChange={(e) => setFiltro(e.target.value)}
+              style={{ width: '100%', padding: '0.5rem', marginBottom: '1rem', borderRadius: '5px', border: '1px solid #ccc' }}
+            />
+
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Grado</th>
+                  <th>Grupo</th>
+                  <th>Adeudo</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                {alumnosFiltrados.length > 0 ? (
+                  alumnosFiltrados.map((a) => (
+                    <tr key={a.id}>
+                      <td>{a.nombre} {a.apellido_paterno} {a.apellido_materno}</td>
+                      <td>{a.grado}</td>
+                      <td>{a.grupo_id}</td>
+                      <td style={{ color: a.adeudo_total > 0 ? 'red' : 'green' }}>
+                        ${a.adeudo_total}
+                      </td>
+                      <td>
+                        <button className="btn btn-primary" onClick={() => mostrarDetalleAlumno(a.id)}>
+                          Ver Detalles
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr><td colSpan="5">No hay alumnos disponibles.</td></tr>
+                )}
+              </tbody>
+            </table>
+          </>
+        ) : (
+          <AlumnoDetalle
+            alumno={alumnoSeleccionado}
+            pagos={pagos}
+            uniformes={uniformes}
+            onBack={() => setVistaDetalle(false)}
+          />
+          
+        )}
+      </main>
+    </div>
   );
 };
 
