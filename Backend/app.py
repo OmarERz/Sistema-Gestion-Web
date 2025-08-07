@@ -20,6 +20,7 @@ from routes.uniformes              import uniformes_bp
 from routes.uniformes_pendientes   import uniformes_pendientes_bp
 from routes.pagos_maestros         import pagos_maestros_bp
 from routes.asistencias_maestros   import asistencias_maestros_bp
+from routes.gastos import gastos_bp
 
 def create_app():
     """
@@ -53,6 +54,7 @@ def create_app():
     app.register_blueprint(uniformes_pendientes_bp, url_prefix='/api/uniformes_pendientes')
     app.register_blueprint(pagos_maestros_bp,       url_prefix='/api/pagos_maestros')
     app.register_blueprint(asistencias_maestros_bp, url_prefix='/api/asistencias_maestros')
+    app.register_blueprint(gastos_bp, url_prefix='/api/gastos')
 
 
     return app

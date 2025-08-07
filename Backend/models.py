@@ -225,3 +225,14 @@ class Reporte(db.Model):
     fecha_creacion = db.Column(db.Date, nullable=False, default=date.today)  
                                                                         # Fecha de generación
     url_archivo = db.Column(db.String(300), nullable=False)             # Ruta o URL del archivo generado
+
+# -------------------------------
+# Modelo Gasto
+# -------------------------------
+class Gasto(db.Model):
+    __tablename__ = 'gastos'
+    id = db.Column(db.Integer, primary_key=True)                        # ID único del gasto
+    descripcion = db.Column(db.String(200), nullable=False)             # Descripción del gasto (ej. "Compra de papel")
+    monto = db.Column(db.Float, nullable=False)                         # Importe del gasto
+    categoria = db.Column(db.String(100), nullable=False)               # Categoría del gasto (ej. "Oficina", "Servicios")
+    fecha = db.Column(db.Date, nullable=False, default=date.today)      # Fecha en que se incurrió el gasto
