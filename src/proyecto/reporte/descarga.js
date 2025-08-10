@@ -15,11 +15,11 @@ export default function DownloadGame() {
                 Inicio
               </Link>
               {/* Menú de navegación interno a diferentes secciones del dashboard*/}
-              <Link className="nav-item" to="/">Gestión de Grupos</Link>
-              <Link className="nav-item" to="/">Registro de Pagos</Link>
-              <Link className="nav-item" to="/">Historial de Pagos</Link>
-              <Link className="nav-item" to="/">Gestión de Bajas</Link>
-              <Link className="nav-item" to="/descarga">Descarga de Reportes</Link>
+                  <Link className="nav-item" to="/gestionGrupos">Gestión de Grupos</Link>
+                  <Link className="nav-item" to="/registroPagos">Registro de Pagos</Link>
+                  <Link className="nav-item" to="/historialPagos">Historial de Pagos</Link>
+                  <Link className="nav-item" to="/bajaAlumno">Gestión de Bajas</Link>
+                  <Link className="nav-item" to="/descarga">Descarga de Reportes</Link>
             </nav>
 
           {/* Botón de descarga */}

@@ -1,0 +1,80 @@
+/* Encapsulado por prefijo 'bajas-' para evitar colisiones */
+
+.bajas-panel {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1rem;
+}
+
+.bajas-col {
+  background-color: #1a1a28;
+  color: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.bajas-title {
+  color: #a6a6a6;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.bajas-input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 0.75rem;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #2a2a3d;
+  color: #fff;
+}
+
+.bajas-table th {
+  background-color: #3a557c;
+  color: #fff;
+}
+
+.bajas-card {
+  background: #121218;
+  border: 1px solid #2a2a3d;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.bajas-field {
+  margin-bottom: 0.75rem;
+}
+
+.bajas-label {
+  display: block;
+  color: #ccc;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.bajas-value {
+  font-weight: bold;
+  color: #fff;
+}
+
+.bajas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.bajas-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+/* Responsivo */
+@media (max-width: 1000px) {
+  .bajas-panel {
+    grid-template-columns: 1fr;
+  }
+  .bajas-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -19,6 +19,9 @@ import Resgistro_Pagos from "./proyecto/registro_pagos/RegistroPago";
 
 import Historial_Pagos from "./proyecto/historial_pagos/HistorialAlumno";
 
+import Baja_Alumno from "./proyecto/gestion_bajas/BajaAlumno";
+
+
 // Importa el componente descarag desde la carpeta "proyecto"
 import Descarga from "./proyecto/reporte/descarga"
 
@@ -46,6 +49,9 @@ function App() {
 
         {/* Ruta "/crud" que carga el componente de dash board*/}
         <Route path="/historialPagos" element={<Historial_Pagos/>}/>
+
+                {/* Ruta "/crud" que carga el componente de dash board*/}
+        <Route path="/bajaAlumno" element={<Baja_Alumno/>}/>
 
         {/* Ruta "/crud" que carga el componente de dash board*/}
         <Route path="/descarga" element={<Descarga/>}/>

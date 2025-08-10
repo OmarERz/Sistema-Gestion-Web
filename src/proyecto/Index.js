@@ -64,7 +64,7 @@ const Index = () => {
         <Link className="nav-item" to="/gestionGrupos">Gestión de Grupos</Link>
         <Link className="nav-item" to="/registroPagos">Registro de Pagos</Link>
         <Link className="nav-item" to="/historialPagos">Historial de Pagos</Link>
-        <Link className="nav-item" to="/">Gestión de Bajas</Link>
+        <Link className="nav-item" to="/bajaAlumno">Gestión de Bajas</Link>
         <Link className="nav-item" to="/descarga">Descarga de Reportes</Link>
       </nav>
 
