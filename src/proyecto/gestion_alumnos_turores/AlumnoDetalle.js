@@ -1,16 +1,24 @@
 // AlumnoDetalle.js
 import React from "react";
-import html2pdf from 'html2pdf.js';
+import html2pdf from "html2pdf.js";
 
-
-const AlumnoDetalle = ({ alumno, pagos, uniformes, onBack }) => {
+const AlumnoDetalle = ({ alumno, pagos, uniformes, grupos = [], onBack }) => {
   if (!alumno) return null;
+
+  const getGrupoNombre = (id) =>
+    grupos.find((g) => g.id === id)?.nombre || "Sin grupo";
 
   return (
     <div className="main-content">
-      <h2 className="section-title">Detalle de {alumno.nombre} {alumno.apellido_paterno}</h2>
-      <p><strong>Grado:</strong> {alumno.grado}</p>
-      <p><strong>Grupo:</strong> {alumno.grupo_id}</p>
+      <h2 className="section-title">
+        Detalle de {alumno.nombre} {alumno.apellido_paterno}
+      </h2>
+      <p>
+        <strong>Grado:</strong> {alumno.grado}
+      </p>
+      <p>
+        <strong>Grupo:</strong> {getGrupoNombre(alumno.grupo_id)}
+      </p>
 
       <hr />
       <h3>Historial de Pagos</h3>
@@ -35,7 +43,9 @@ const AlumnoDetalle = ({ alumno, pagos, uniformes, onBack }) => {
             ))}
           </tbody>
         </table>
-      ) : <p>No hay pagos registrados.</p>}
+      ) : (
+        <p>No hay pagos registrados.</p>
+      )}
 
       <hr />
       <h3>Uniformes</h3>
@@ -53,17 +63,21 @@ const AlumnoDetalle = ({ alumno, pagos, uniformes, onBack }) => {
               <tr key={i}>
                 <td>{u.prenda}</td>
                 <td>{u.talla}</td>
-                <td style={{ color: u.entregado ? 'green' : 'red' }}>
-                  {u.entregado ? 'Sí' : 'No'}
+                <td style={{ color: u.entregado ? "green" : "red" }}>
+                  {u.entregado ? "Sí" : "No"}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      ) : <p>No hay uniformes registrados.</p>}
+      ) : (
+        <p>No hay uniformes registrados.</p>
+      )}
 
       <div className="form-actions">
-        <button className="btn btn-primary" onClick={onBack}>⬅️ Volver</button>
+        <button className="btn btn-primary" onClick={onBack}>
+          ⬅️ Volver
+        </button>
       </div>
     </div>
   );

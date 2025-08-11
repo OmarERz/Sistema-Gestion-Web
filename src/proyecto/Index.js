@@ -7,6 +7,7 @@ import "../proyecto/styles.css";
 
 const Index = () => {
   const [alumnos, setAlumnos] = useState([]);
+  const [grupos, setGrupos] = useState([]);
   const [filtro, setFiltro] = useState("");
   const [vistaDetalle, setVistaDetalle] = useState(false);
   const [alumnoSeleccionado, setAlumnoSeleccionado] = useState(null);
@@ -25,8 +26,20 @@ const Index = () => {
     }
   };
 
+  const fetchGrupos = async () => {
+    try {
+      const res = await fetch("/api/grupos/");
+      if (!res.ok) throw new Error(await res.text());
+      const data = await res.json();
+      setGrupos(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Error al obtener grupos:", error);
+    }
+  };
+
   useEffect(() => {
     fetchAlumnos();
+    fetchGrupos();
   }, []);
 
   const mostrarDetalleAlumno = async (id) => {
@@ -45,6 +58,9 @@ const Index = () => {
       console.error("Error:", err);
     }
   };
+
+  const getGrupoNombre = (id) =>
+    grupos.find((g) => g.id === id)?.nombre || "Sin grupo";
 
   const alumnosFiltrados = alumnos.filter((a) =>
     `${a.nombre} ${a.apellido_paterno} ${a.apellido_materno}`
@@ -94,7 +110,7 @@ const Index = () => {
                     <tr key={a.id}>
                       <td>{a.nombre} {a.apellido_paterno} {a.apellido_materno}</td>
                       <td>{a.grado}</td>
-                      <td>{a.grupo_id}</td>
+                      <td>{getGrupoNombre(a.grupo_id)}</td>
                       <td style={{ color: a.adeudo_total > 0 ? 'red' : 'green' }}>
                         ${a.adeudo_total}
                       </td>

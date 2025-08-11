@@ -7,11 +7,22 @@ const BajaAlumno = () => {
   const [alumnos, setAlumnos] = useState([]);
   const [bajas, setBajas] = useState([]);
   const [filtro, setFiltro] = useState("");
-
+  const [grupos, setGrupos] = useState([]);
   const [alumnoSel, setAlumnoSel] = useState(null);
   const [adeudo, setAdeudo] = useState(0);
   const [fechaBaja, setFechaBaja] = useState(() => new Date().toISOString().slice(0, 10));
   const [motivo, setMotivo] = useState("");
+
+  const fetchGrupos = async () => {
+    try {
+      const res = await fetch("/api/grupos/");
+      if (!res.ok) throw new Error(await res.text());
+      const data = await res.json();
+      setGrupos(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Error al obtener grupos:", error);
+    }
+  };
 
   useEffect(() => {
     // Cargar alumnos
@@ -25,6 +36,8 @@ const BajaAlumno = () => {
       .then(r => r.ok ? r.json() : [])
       .then(data => setBajas(Array.isArray(data) ? data : []))
       .catch(() => setBajas([]));
+
+      fetchGrupos();
   }, []);
 
   const alumnosFiltrados = alumnos.filter(a =>
@@ -98,7 +111,11 @@ const BajaAlumno = () => {
       console.error(e);
       alert("Error de red al registrar la baja.");
     }
+    
   };
+  const getGrupoNombre = (id) =>
+    grupos.find((g) => g.id === id)?.nombre || "Sin grupo";
+
 
   return (
     <div className="layout">
@@ -140,7 +157,7 @@ const BajaAlumno = () => {
                   <tr key={a.id}>
                     <td>{a.nombre} {a.apellido_paterno} {a.apellido_materno}</td>
                     <td>{a.grado}</td>
-                    <td>{a.grupo_id}</td>
+                    <td>{getGrupoNombre(a.grupo_id)}</td>
                     <td>
                       <button className="btn btn-success" onClick={() => seleccionarAlumno(a)}>
                         Seleccionar

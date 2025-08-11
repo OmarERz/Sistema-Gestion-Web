@@ -5,16 +5,29 @@ import html2pdf from "html2pdf.js";
 
 const HistorialPagos = () => {
   const [alumnos, setAlumnos] = useState([]);
+  const [grupos, setGrupos] = useState([]);
   const [filtro, setFiltro] = useState("");
   const [alumnoSeleccionado, setAlumnoSeleccionado] = useState(null);
   const [pagos, setPagos] = useState([]);
   const [uniformes, setUniformes] = useState([]);
 
+  const fetchGrupos = async () => {
+    try {
+      const res = await fetch("/api/grupos/");
+      if (!res.ok) throw new Error(await res.text());
+      const data = await res.json();
+      setGrupos(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Error al obtener grupos:", error);
+    }
+  };
+
   useEffect(() => {
     fetch("/api/alumnos/")
       .then((res) => res.json())
       .then((data) => setAlumnos(data))
-      .catch((err) => console.error("Error al obtener alumnos:", err));
+      .catch((err) => console.error("Error al obtener alumnos:", err))
+      fetchGrupos();
   }, []);
 
   const buscarHistorial = async (alumno) => {
@@ -50,6 +63,10 @@ const HistorialPagos = () => {
       .toLowerCase()
       .includes(filtro.toLowerCase())
   );
+
+  const getGrupoNombre = (id) =>
+    grupos.find((g) => g.id === id)?.nombre || "Sin grupo";
+
 
   return (
     <div className="layout">
@@ -94,7 +111,7 @@ const HistorialPagos = () => {
                 <tr key={a.id}>
                   <td>{a.nombre} {a.apellido_paterno} {a.apellido_materno}</td>
                   <td>{a.grado}</td>
-                  <td>{a.grupo_id}</td>
+                  <td>{getGrupoNombre(a.grupo_id)}</td>
                   <td>
                     <button className="btn btn-success" onClick={() => buscarHistorial(a)}>
                       Ver historial

@@ -109,10 +109,10 @@ const RegistroPago = () => {
       descuento: Number(descuento),
       recargo: Number(recargo),
       pagado: false,
-      estado_pago: 'PENDIENTE',
+      estado_pago: 'Pendiente',
       alumno_id: Number(alumnoSeleccionado),
       concepto_id: Number(tipoPago)     // usar el ID real del select
-      // Nota: si quieres guardar fecha_limite en DB, hay que agregarlo al modelo/endpoint
+      
     };
 
     try {
