@@ -21,6 +21,10 @@ import Historial_Pagos from "./proyecto/historial_pagos/HistorialAlumno";
 
 import Baja_Alumno from "./proyecto/gestion_bajas/BajaAlumno";
 
+import Gastos from "./proyecto/gastos/gastos";
+
+import Maestros from "./proyecto/maestros/Maestros";
+
 
 // Importa el componente descarag desde la carpeta "proyecto"
 import Descarga from "./proyecto/reporte/descarga"
@@ -41,17 +45,23 @@ function App() {
         <Route path="/" element={<Menu />}/> */}
         <Route path="/index" element={<Menu/>}/>
 
-        {/* Ruta "/crud" que carga el componente de dash board*/}
+        {/* Ruta "/gestionGrupos" que carga el componente de dash board*/}
         <Route path="/gestionGrupos" element={<Gestion_Grupos/>}/>
 
-        {/* Ruta "/crud" que carga el componente de dash board*/}
+        {/* Ruta "/registroPagos" que carga el componente de dash board*/}
         <Route path="/registroPagos" element={<Resgistro_Pagos/>}/>
 
-        {/* Ruta "/crud" que carga el componente de dash board*/}
+        {/* Ruta "/HistorialPagos" que carga el componente de dash board*/}
         <Route path="/historialPagos" element={<Historial_Pagos/>}/>
 
-                {/* Ruta "/crud" que carga el componente de dash board*/}
+        {/* Ruta "/bajaAlumno" que carga el componente de dash board*/}
         <Route path="/bajaAlumno" element={<Baja_Alumno/>}/>
+
+        {/* Ruta "/gastos" que carga el componente de dash board*/}
+        <Route path="/gastos" element={<Gastos/>}/>
+
+        {/* Ruta "/maestros" que carga el componente de dash board*/}
+        <Route path="/maestros" element={<Maestros/>}/>
 
         {/* Ruta "/crud" que carga el componente de dash board*/}
         <Route path="/descarga" element={<Descarga/>}/>

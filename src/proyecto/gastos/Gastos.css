@@ -1,0 +1,178 @@
+/* ==== Layout y Sidebar (versión -gastos) ==== */
+.layout-gastos {
+  display: flex;
+  min-height: 100vh;           /* ocupa todo el alto de la ventana */
+}
+
+.sidebar-gastos {
+  width: 220px;
+  background: #141826;
+  border-right: 1px solid #1f2a44;
+  padding: 24px 16px;
+}
+
+.logo-gastos {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+  color: #8bd1ff;
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+
+.nav-item-gastos {
+  display: block;
+  padding: 10px 12px;
+  margin: 6px 0;
+  border-radius: 10px;
+  color: #cbd5e1;
+  text-decoration: none;
+  background: transparent;
+}
+.nav-item-gastos:hover { background: #1a1c25; color: #fff; }
+.active-gastos { background: #1e40af; color: #fff; }
+
+/* ==== Contenido principal centrado ==== */
+.main-content-gastos {
+  flex: 1;                        /* ocupa todo lo que queda del sidebar */
+  padding: 28px;
+  display: flex;
+  justify-content: center;        /* centrar horizontal */
+  align-items: center;            /* centrar vertical */
+  box-sizing: border-box;
+  min-height: 100vh;              /* asegura centro vertical real */
+}
+
+/* Limitar ancho del contenido */
+.center-gastos {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* ==== Tarjetas y textos ==== */
+.card-gastos {
+  background: #121825;
+  border: 1px solid #1f2a44;
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.title-gastos {
+  font-size: 34px;
+  font-weight: 900;
+  color: #1fb6ff;
+  margin: 0 0 18px;
+}
+
+.subtitle-gastos {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+/* Alertas */
+.alert-gastos {
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.info-gastos  { background: #0b3b75; color: #dbeafe; }
+.error-gastos { background: #4c1d1d; color: #fecaca; }
+
+/* ==== Formulario ==== */
+.form-gastos { margin-top: 4px; }
+
+.row-gastos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.field-gastos { display: flex; flex-direction: column; }
+
+.label-gastos {
+  font-size: 13px;
+  color: #9fb3c8;
+  margin-bottom: 6px;
+}
+
+.input-gastos {
+  background: #0e1422;
+  color: #e7edf7;
+  border: 1px solid #24324d;
+  border-radius: 10px;
+  padding: 12px 12px;
+  outline: none;
+}
+.input-gastos:focus { border-color: #2f6df6; box-shadow: 0 0 0 3px rgba(47,109,246,0.2); }
+
+.actions-gastos { margin-top: 6px; }
+
+.btn-primary-gastos {
+  background: #2f6df6;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.btn-primary-gastos:hover { filter: brightness(1.05); }
+
+.btn-danger-gastos {
+  background: #b91c1c;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.btn-danger-gastos:hover { filter: brightness(1.05); }
+
+/* ==== Tabla ==== */
+.table-gastos {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.table-gastos thead th {
+  text-align: left;
+  background: #0f1524;
+  color: #9fb3c8;
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #1f2a44;
+}
+.table-gastos tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #1a2440;
+}
+.table-gastos tbody tr:hover { background: #111a2f; }
+
+.total-gastos {
+  margin-top: 12px;
+  font-size: 18px;
+  color: #93f27c;
+  font-weight: 800;
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 900px) {
+  .row-gastos { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .sidebar-gastos { width: 200px; }
+}
+
+@media (max-width: 600px) {
+  .layout-gastos { flex-direction: column; }
+  .sidebar-gastos { width: 100%; border-right: 0; border-bottom: 1px solid #1f2a44; }
+  .main-content-gastos { min-height: calc(100vh - 90px); }
+}

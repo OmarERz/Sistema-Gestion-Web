@@ -1,0 +1,36 @@
+
+# 1. Verificar que Node.js esté instalado
+node -v
+npm -v
+
+# Si no está instalado, descargar desde:
+# https://nodejs.org (versión LTS recomendada)
+
+# 2. Crear un nuevo proyecto React (solo si no tienes uno creado)
+npx create-react-app nombre-proyecto
+
+# 3. Entrar al directorio del proyecto
+cd nombre-proyecto
+
+# 4. Instalar dependencias necesarias para navegación
+npm install react-router-dom
+
+# 5. Si el backend Flask está en otro puerto, instalar CORS en Flask (backend)
+# (Este comando se ejecuta en el entorno de Python, no en React)
+pip install flask-cors
+
+# 6. Agregar en package.json de React (opcional para evitar problemas de CORS)
+# Dentro de las llaves principales:
+"proxy": "http://localhost:5000"
+
+# 7. Ejecutar la aplicación React
+npm start
+
+# 8. Detener la aplicación (cuando quieras)
+Ctrl + C
+
+# 9. Instalar todas las dependencias del proyecto si clonaste el repo
+npm install
+
+# 10. Construir la versión lista para producción
+npm run build

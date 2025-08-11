@@ -1,64 +1,157 @@
-/* ===== Registro de Pago ===== */
-.registro-pago { padding: 16px; color: #e6edf7; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial; }
 
 
-.nav-item-pago{
-  text-decoration:none; color:#93a4c3;
-  background:#121831; border:1px solid #26304e;
-  padding:8px 12px; border-radius:10px; transition:.2s ease;
+.logo {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+  color: #8bd1ff;
+  text-decoration: none;
+  margin-bottom: 24px;
 }
-.nav-item-pago:hover{ color:#e6edf7; background:#111936; }
-.nav-item-pago.active{ color:#12b0ff; border-color:#12b0ff44; }
 
-/* Contenedor del formulario */
-.registro-pago .form-container{
-  max-width: 980px; margin: 0 auto; background:#141a2b;
-  border:1px solid #26304e; border-radius:18px; padding:22px;
-  box-shadow:0 10px 32px rgba(0,0,0,.28);
+.nav-item {
+  text-decoration: none;
+  color: #93a4c3;
+  background: #121831;
+  border: 1px solid #26304e;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: .2s ease;
 }
-.registro-pago h2{ margin:0 0 18px; text-align:center; font-size:30px; font-weight:800; color:#12b0ff; }
-.registro-pago h3{ margin:18px 0 10px; text-align:center; font-size:22px; font-weight:800; color:#cdd7f2; }
+.nav-item:hover { color: #e6edf7; background: #111936; }
+.nav-item.active { color: #12b0ff; border-color: #12b0ff44; }
+
+/* ===== Contenedor principal centrado ===== */
+.registro-pago {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* centro horizontal */
+  align-items: center;     /* centro vertical */
+  padding: 16px;
+  color: #e6edf7;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  min-height: 100vh; /* altura completa para centrar */
+  box-sizing: border-box;
+}
+
+/* ===== Contenedor del formulario ===== */
+.registro-pago .form-container {
+  max-width: 980px;
+  width: 100%;
+  background: #141a2b;
+  border: 1px solid #26304e;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 10px 32px rgba(0,0,0,.28);
+}
+
+.registro-pago h2 {
+  margin: 0 0 18px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  color: #12b0ff;
+}
+
+.registro-pago h3 {
+  margin: 18px 0 10px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: #cdd7f2;
+}
 
 /* Filas / Bloques */
-.registro-pago .form-row{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:14px; }
-.registro-pago .input-block{ flex:1 1 240px; min-width:220px; display:flex; flex-direction:column; gap:6px; }
-.registro-pago .input-block label{ font-size:14px; color:#9fb0d1; }
-.registro-pago .input-block span{ font-size:12px; color:#89a0c8; }
+.registro-pago .form-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.registro-pago .input-block {
+  flex: 1 1 240px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.registro-pago .input-block label { font-size: 14px; color: #9fb0d1; }
+.registro-pago .input-block span { font-size: 12px; color: #89a0c8; }
 
 /* Inputs */
-.registro-pago input, .registro-pago select, .registro-pago button.btn{ font-size:15px; }
-.registro-pago input, .registro-pago select{
-  width:100%; background:#1e2640; color:#e6edf7; border:1px solid transparent;
-  border-radius:12px; padding:12px 14px; outline:none; transition:.15s ease;
+.registro-pago input,
+.registro-pago select,
+.registro-pago button.btn {
+  font-size: 15px;
 }
-.registro-pago input::placeholder{ color:#8da3c9; }
-.registro-pago input:focus, .registro-pago select:focus{ border-color:#12b0ff; box-shadow:0 0 0 3px rgba(18,176,255,.16); }
+.registro-pago input,
+.registro-pago select {
+  width: 100%;
+  background: #1e2640;
+  color: #e6edf7;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 12px 14px;
+  outline: none;
+  transition: .15s ease;
+}
+.registro-pago input::placeholder { color: #8da3c9; }
+.registro-pago input:focus,
+.registro-pago select:focus {
+  border-color: #12b0ff;
+  box-shadow: 0 0 0 3px rgba(18,176,255,.16);
+}
 
 /* Botones */
-.registro-pago .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  border:none; border-radius:12px; padding:12px 18px; font-weight:700; cursor:pointer; color:#fff;
-  background:#3b82f6; transition:transform .05s ease, filter .2s ease;
+.registro-pago .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: #3b82f6;
+  transition: transform .05s ease, filter .2s ease;
 }
-.registro-pago .btn:active{ transform: translateY(1px); }
-.registro-pago .btn:hover{ filter:brightness(1.05); }
-.registro-pago .btn-primary{ background:#3b82f6; }
-.registro-pago .btn--small{ padding:6px 10px; font-size:13px; border-radius:10px; }
+.registro-pago .btn:active { transform: translateY(1px); }
+.registro-pago .btn:hover { filter: brightness(1.05); }
+.registro-pago .btn-primary { background: #3b82f6; }
+.registro-pago .btn--small { padding: 6px 10px; font-size: 13px; border-radius: 10px; }
 
 /* Monto final */
-.registro-pago .monto-final{ text-align:center; margin:8px 0 6px; font-size:22px; font-weight:800; color:#84cc16; }
+.registro-pago .monto-final {
+  text-align: center;
+  margin: 8px 0 6px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #84cc16;
+}
 
 /* Lista uniformes */
-.registro-pago ul{ list-style:none; padding:0; margin:8px 0 14px; border-top:1px solid #26304e; }
-.registro-pago ul li{
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
-  padding:10px 2px; border-bottom:1px solid #1d2744; color:#d8e3fb;
+.registro-pago ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 14px;
+  border-top: 1px solid #26304e;
 }
-.registro-pago ul li strong{ color:#e6edf7; }
+.registro-pago ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 2px;
+  border-bottom: 1px solid #1d2744;
+  color: #d8e3fb;
+}
+.registro-pago ul li strong { color: #e6edf7; }
 
 /* Responsive */
-@media (max-width: 820px){
-  .registro-pago .form-container{ padding:18px; }
-  .registro-pago .input-block{ min-width:100%; }
-  .registro-pago h2{ font-size:26px; }
+@media (max-width: 820px) {
+  .registro-pago .form-container { padding: 18px; }
+  .registro-pago .input-block { min-width: 100%; }
+  .registro-pago h2 { font-size: 26px; }
 }

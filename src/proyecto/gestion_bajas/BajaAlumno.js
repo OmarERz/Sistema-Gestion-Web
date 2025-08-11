@@ -126,6 +126,8 @@ const BajaAlumno = () => {
         <Link className="nav-item" to="/historialPagos">Historial de Pagos</Link>
         <Link className="nav-item" to="/bajaAlumno">Gestión de Bajas</Link>
         <Link className="nav-item" to="/descarga">Descarga de Reportes</Link>
+        <Link className="nav-item" to="/gastos">Gastos</Link>
+        <Link className="nav-item" to="/maestros">Maestros</Link>
       </nav>
 
       <main className="main-content">
