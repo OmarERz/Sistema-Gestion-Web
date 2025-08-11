@@ -11,7 +11,7 @@ const HistorialPagos = () => {
   const [uniformes, setUniformes] = useState([]);
 
   useEffect(() => {
-    fetch("/api/alumnos")
+    fetch("/api/alumnos/")
       .then((res) => res.json())
       .then((data) => setAlumnos(data))
       .catch((err) => console.error("Error al obtener alumnos:", err));

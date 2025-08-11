@@ -15,16 +15,12 @@ const Index = () => {
 
   const fetchAlumnos = async () => {
     try {
-      const res = await fetch("/api/alumnos");
-      if (res.ok) {
-        const data = await res.json();
-        const conAdeudo = data.map((a) => ({
-          ...a,
-          adeudo_total: Math.floor(Math.random() * 5000), // simulado
-        }));
-        setAlumnos(conAdeudo);
+      const res = await fetch("/api/alumnos/");
+          if (!res.ok) throw new Error(await res.text());
+      const data = await res.json();
+      setAlumnos(data);
       }
-    } catch (error) {
+      catch (error) {
       console.error("Error al obtener alumnos:", error);
     }
   };

@@ -31,13 +31,15 @@ function Register() {
     // Prepara el objeto a enviar
     const data = {
       usuario: usuario.trim(),
-      contrasena: contrasena.trim()
+      contrasena: contrasena.trim(),
+      nombre: usuario.trim(),   // usa el usuario como nombre (o agrega un input)
+      activo: true
     };
     
     console.log("Registrando datos:", data);
     
     try {
-      const response = await fetch("/profesor", {
+      const response = await fetch("/api/administradores/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)

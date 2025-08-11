@@ -15,13 +15,13 @@ const BajaAlumno = () => {
 
   useEffect(() => {
     // Cargar alumnos
-    fetch("/api/alumnos")
+    fetch("/api/alumnos/")
       .then(r => r.json())
       .then(data => setAlumnos(data))
       .catch(err => console.error("Error alumnos:", err));
 
     // Cargar historial de bajas
-    fetch("/api/alumnos_baja")
+    fetch("/api/alumnos_baja/")
       .then(r => r.ok ? r.json() : [])
       .then(data => setBajas(Array.isArray(data) ? data : []))
       .catch(() => setBajas([]));
@@ -72,7 +72,7 @@ const BajaAlumno = () => {
     };
 
     try {
-      const res = await fetch("/api/alumnos_baja", {
+      const res = await fetch("/api/alumnos_baja/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -81,7 +81,7 @@ const BajaAlumno = () => {
       if (res.ok) {
         alert("Baja registrada.");
         // refrescar historial
-        fetch("/api/alumnos_baja")
+        fetch("/api/alumnos_baja/")
           .then(r => r.ok ? r.json() : [])
           .then(data => setBajas(Array.isArray(data) ? data : []))
           .catch(() => {});

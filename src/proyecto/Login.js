@@ -4,10 +4,12 @@ import './index.css';
 import { useNavigate, Link } from 'react-router-dom';
 import EscudoImg from '../proyecto/Logo.jpg';
 
+const API = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 function Login() {
   const [user, setUsuario] = useState('');
   const [password, setPassword] = useState('');
-  const MAX_LENGTH = 30;
+  const MAX_LENGTH = 50;
   
   const isFormValid = user.trim().length > 0 &&
                       password.trim().length > 0 &&
@@ -30,7 +32,7 @@ function Login() {
     }
     try {
       // const API = process.env.REACT_APP_API_URL || "";
-      const response = await fetch('/', {
+      const response = await fetch('/api/administradores/validaAdmin', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

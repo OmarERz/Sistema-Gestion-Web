@@ -27,7 +27,7 @@ const GestionGrupos = () => {
   }, []);
 
   const agregarGrupo = async () => {
-    if (!grado || !grupo || !cicloEscolar) {
+    if (!grado || !grupo ) {
       alert("Por favor, complete todos los campos.");
       return;
     }
@@ -175,12 +175,7 @@ const GestionGrupos = () => {
         <h2 className="section-title">Gestión de Grupos</h2>
 
         <div className="form-grid">
-            <input
-            type="text"
-            placeholder="Grado"
-            value={grado}
-            onChange={(e) => setGrado(e.target.value)}
-            />
+            
             <input
             type="text"
             placeholder="Grupo"
@@ -189,10 +184,11 @@ const GestionGrupos = () => {
             />
             <input
             type="text"
-            placeholder="Ciclo Escolar"
-            value={cicloEscolar}
-            onChange={(e) => setCicloEscolar(e.target.value)}
+            placeholder="Grado"
+            value={grado}
+            onChange={(e) => setGrado(e.target.value)}
             />
+            
         </div>
 
         <button className="btn btn-success" onClick={agregarGrupo}>
@@ -204,7 +200,6 @@ const GestionGrupos = () => {
             <tr>
                 <th>Grado</th>
                 <th>Grupo</th>
-                <th>Ciclo Escolar</th>
                 <th>Acciones</th>
             </tr>
             </thead>
@@ -213,8 +208,7 @@ const GestionGrupos = () => {
                     grupos.map((g) => (
                     <tr key={g.id}>
                         <td>{g.grado}</td>
-                        <td>{g.grupo}</td>
-                        <td>{g.ciclo_escolar}</td>
+                        <td>{g.nombre}</td>
                         <td>
                             <button className="btn btn-danger" onClick={() => eliminarGrupo(g.id)}>
                                 🗑️ Eliminar
@@ -224,7 +218,7 @@ const GestionGrupos = () => {
                     ))
                 ) : (
                     <tr>
-                    <td colSpan="4">No hay grupos registrados.</td>
+                    <td colSpan="3">No hay grupos registrados.</td>
                     </tr>
                 )}
             </tbody>

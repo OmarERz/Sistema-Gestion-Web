@@ -1,58 +1,44 @@
-/* Estilo para el formulario de registro */
-.registro-form {
-  background-color: #1e1e2f;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.4);
-  max-width: 700px;
-  margin: 2rem auto;
-  color: #ffffff;
+:root{
+  --bg:#0f1222; --panel:#141a2b; --muted:#93a4c3; --text:#e6edf7;
+  --accent:#12b0ff; --primary:#3b82f6; --input:#1e2640; --line:#26304e; --radius:16px;
 }
 
-.form-title {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  color: #4ea8de;
-  text-align: center;
+/* contenedor de la sección, sin sidebar */
+.wrap-registroalumno{ margin: 0 0 28px; }
+.title-registroalumno{
+  font-size: 32px; font-weight: 800; color: var(--accent);
+  text-align: center; margin: 8px 0 18px;
+}
+.subtitle-registroalumno{ font-size: 18px; font-weight: 700; color: var(--accent); margin: 12px 0; }
+
+.card-registroalumno{
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 20px; box-shadow: 0 8px 24px rgba(0,0,0,.25);
 }
 
-/* Fila de dos columnas */
-.form-row {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
+/* grid de inputs */
+.grid-registroalumno{
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;
+}
+.grid-registroalumno input,
+.grid-registroalumno select{
+  width: 100%; background: var(--input); border: 1px solid transparent;
+  color: var(--text); padding: 12px 14px; border-radius: 12px; outline: none; transition: .15s ease;
+}
+.grid-registroalumno input::placeholder{ color:#8ca0c0; }
+.grid-registroalumno input:focus, .grid-registroalumno select:focus{
+  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(18,176,255,.15);
 }
 
-.form-row input,
-.form-row select {
-  flex: 1;
-  padding: 0.6rem;
-  border-radius: 5px;
-  border: none;
-  background-color: #2a2a3d;
-  color: #ffffff;
+/* botón */
+.btn-registroalumno{
+  display:inline-flex; align-items:center; justify-content:center;
+  border:none; border-radius:12px; padding:12px 18px; font-weight:700; cursor:pointer; color:#fff;
 }
+.btn-primary-registroalumno{ background: var(--primary); }
+.btn-primary-registroalumno:hover{ filter: brightness(1.05); }
 
-.form-row input::placeholder {
-  color: #bbbbbb;
-}
-
-.form-actions {
-  text-align: center;
-  margin-top: 1.5rem;
-}
-
-.form-actions .btn-primary {
-  background-color: #4ea8de;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.form-actions .btn-primary:hover {
-  background-color: #3b94c4;
+@media (max-width: 920px){
+  .grid-registroalumno{ grid-template-columns: 1fr; }
+  .title-registroalumno{ font-size: 26px; }
 }
