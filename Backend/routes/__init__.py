@@ -8,7 +8,6 @@ from .ciclos                 import ciclos_bp
 from .pagos                  import pagos_bp
 from .maestros               import maestros_bp
 from .reportes               import reportes_bp
-from .gastos                 import gastos_bp
 
 # Blueprints adicionales para recursos secundarios
 from .conceptos_pago         import conceptos_pago_bp
@@ -33,5 +32,4 @@ __all__ = [
     "uniformes_pendientes_bp",
     "pagos_maestros_bp",
     "asistencias_maestros_bp",
-    "gastos_bp"
 ]

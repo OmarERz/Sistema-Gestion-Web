@@ -58,14 +58,28 @@ def crear_pago():
     except ValueError:
         abort(400, description="Formato de fecha_pago inválido. Debe ser YYYY-MM-DD")
 
+    #  Normalizar/validar estado_pago
+    estado = (str(data.get('estado_pago') or '')).strip().lower()
+    valores_validos = {'pendiente', 'pagado'}  # ajusta aquí si tu CHECK permite más
+    if estado not in valores_validos:
+        # Si llega algo inesperado, decide qué hacer; aquí forzamos a 'pendiente'
+        estado = 'pendiente'
+
+    #  Sincronizar booleano pagado con estado (consistencia)
+    pagado_bool = bool(data.get('pagado'))
+    if estado == 'pagado':
+        pagado_bool = True
+    elif estado == 'pendiente':
+        pagado_bool = False
+
     # Crear y guardar el pago
     p = Pago(
         fecha_pago=fp,
         monto=data['monto'],
         descuento=data['descuento'],
         recargo=data['recargo'],
-        pagado=data['pagado'],
-        estado_pago=data['estado_pago'],
+        pagado=pagado_bool,
+        estado_pago=estado,         
         alumno_id=data['alumno_id'],
         concepto_id=data['concepto_id']
     )
@@ -85,12 +99,23 @@ def actualizar_pago(id):
         if campo in data:
             if campo == 'fecha_pago':
                 try:
-                    setattr(p, campo, date.fromisoformat(data[campo]))
+                    p.fecha_pago = date.fromisoformat(str(data[campo]))
                 except ValueError:
                     abort(400, description="Formato de fecha_pago inválido. Debe ser YYYY-MM-DD")
+            elif campo == 'estado_pago':
+                estado = (str(data[campo] or '')).strip().lower()
+                if estado not in {'pendiente', 'pagado'}:
+                    abort(400, description="estado_pago inválido (usa 'pendiente' o 'pagado')")
+                p.estado_pago = estado
+                # sincroniza 'pagado'
+                p.pagado = (estado == 'pagado')
+            elif campo == 'pagado':
+                p.pagado = bool(data['pagado'])
+                # si tocan 'pagado', ajusta 'estado_pago'
+                p.estado_pago = 'pagado' if p.pagado else 'pendiente'
             else:
                 setattr(p, campo, data[campo])
-
+                
     db.session.commit()
     return jsonify({'mensaje': 'Actualizado'}), 200
 

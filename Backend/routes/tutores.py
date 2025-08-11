@@ -25,7 +25,7 @@ def listar_tutores():
 def crear_tutor():
     data = request.get_json() or {}
     #Validaciones básicas
-    for campo in ('id','nombre','apellido_paterno','apellido_materno','telefono','relacion_con_alumno'):
+    for campo in ('nombre','apellido_paterno','apellido_materno','telefono','relacion_con_alumno'):
         if campo not in data:
             abort(400, description=f"Falta campo obligatorio: {campo}")
     #Crear y guardar

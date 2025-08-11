@@ -20,6 +20,7 @@ from routes.uniformes              import uniformes_bp
 from routes.uniformes_pendientes   import uniformes_pendientes_bp
 from routes.pagos_maestros         import pagos_maestros_bp
 from routes.asistencias_maestros   import asistencias_maestros_bp
+from routes.administradores_dp import administradores_bp
 from routes.gastos import gastos_bp
 
 def create_app():
@@ -55,15 +56,46 @@ def create_app():
     app.register_blueprint(pagos_maestros_bp,       url_prefix='/api/pagos_maestros')
     app.register_blueprint(asistencias_maestros_bp, url_prefix='/api/asistencias_maestros')
     app.register_blueprint(gastos_bp, url_prefix='/api/gastos')
+    app.register_blueprint(administradores_bp, url_prefix='/api/administradores')
 
+   
+    # Crear tablas y sembrar datos
+    with app.app_context():
+        db.create_all()  # 🔹 Crea todas las tablas definidas en models.py
+
+        from models import ConceptoPago, Administrador
+
+        # Conceptos de pago por defecto
+        if ConceptoPago.query.count() == 0:
+            conceptos_por_defecto = [
+                {"nombre": "Inscripción", "obligatorio": True,  "aplica_descuento": True,  "aplica_recargo": False, "tipo": "inscripcion"},
+                {"nombre": "Colegiatura", "obligatorio": True,  "aplica_descuento": True,  "aplica_recargo": True,  "tipo": "colegiatura"},
+                {"nombre": "Material",    "obligatorio": False, "aplica_descuento": False, "aplica_recargo": False, "tipo": "material"},
+                {"nombre": "Seguro",      "obligatorio": False, "aplica_descuento": False, "aplica_recargo": False, "tipo": "seguro"},
+                {"nombre": "Uniformes",   "obligatorio": False, "aplica_descuento": False, "aplica_recargo": False, "tipo": "uniformes"},
+                {"nombre": "Actividades Extraescolares", "obligatorio": False, "aplica_descuento": False, "aplica_recargo": False, "tipo": "actividades"},
+            ]
+            for c in conceptos_por_defecto:
+                db.session.add(ConceptoPago(**c))
+            db.session.commit()
+            print("✔ Conceptos de pago iniciales creados.")
+
+        # Administrador por defecto
+        if Administrador.query.count() == 0:
+            admin = Administrador(
+                usuario="AlasMX11",
+                contrasena="112025",
+                nombre="Admin por defecto",
+                activo=True
+            )
+            db.session.add(admin)
+            db.session.commit()
+            print("✔ Admin por defecto creado: usuario=AlasMX11, contrasena=112025")
 
     return app
 
 # Instancia global de la aplicación
 app = create_app()
 
-if __name__ == '__main__':
-    # Lee el puerto desde la variable de entorno o usa 5000 por defecto
-    port = int(os.environ.get('PORT', 5000))
-    # Arranca el servidor en modo debug para desarrollo
-    app.run(host='0.0.0.0', port=port, debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)

@@ -6,6 +6,8 @@ from models import db, ConceptoPago
 # 1) Creamos el Blueprint para conceptos de pago
 conceptos_pago_bp = Blueprint('conceptos_pago_bp', __name__)
 
+# Inicializar conceptos por defecto si no existen
+
 # 2) GET /api/conceptos_pago/ => lista todos los conceptos
 @conceptos_pago_bp.route('/', methods=['GET'])
 def listar_conceptos_pago():

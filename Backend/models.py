@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date,datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import CheckConstraint
 
@@ -212,6 +212,19 @@ class UniformePendiente(db.Model):
     # Relaciones inversas
     alumno = db.relationship('Alumno', back_populates='uniformes')
     uniforme = db.relationship('Uniforme', back_populates='pendientes')
+
+# -------------------------------
+# Administrador
+# -------------------------------
+
+class Administrador(db.Model):
+    __tablename__ = 'administradores'
+    id = db.Column(db.Integer, primary_key=True)
+    usuario = db.Column(db.String(50), nullable=False, unique=True)
+    contrasena = db.Column(db.String(50), nullable=False)
+    nombre = db.Column(db.String(100), nullable=False)
+    activo = db.Column(db.Boolean, nullable=False, default=True)
+    creado_en = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 
 # -------------------------------
