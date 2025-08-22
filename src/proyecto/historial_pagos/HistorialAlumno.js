@@ -1,7 +1,6 @@
 // src/proyecto/HistorialPagos.js
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import html2pdf from "html2pdf.js";
 
 const HistorialPagos = () => {
   const [alumnos, setAlumnos] = useState([]);
@@ -55,7 +54,6 @@ const HistorialPagos = () => {
       html2canvas: { scale: 2 },
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
     };
-    html2pdf().set(opciones).from(elemento).save();
   };
 
   const alumnosFiltrados = alumnos.filter((a) =>

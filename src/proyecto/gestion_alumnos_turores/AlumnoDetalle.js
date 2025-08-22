@@ -1,6 +1,5 @@
 // AlumnoDetalle.js
 import React from "react";
-import html2pdf from "html2pdf.js";
 
 const AlumnoDetalle = ({ alumno, pagos, uniformes, grupos = [], onBack }) => {
   if (!alumno) return null;

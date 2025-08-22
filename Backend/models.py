@@ -1,6 +1,7 @@
 from datetime import date,datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import CheckConstraint
+from sqlalchemy.ext.hybrid import hybrid_property
 
 # Inicialización del ORM
 db = SQLAlchemy()
@@ -78,6 +79,10 @@ class Alumno(db.Model):
     bajas = db.relationship('AlumnoBaja', back_populates='alumno')
     uniformes = db.relationship('UniformePendiente', back_populates='alumno')
 
+    @hybrid_property
+    def adeudo_total(self):
+        return sum((p.total or 0.0) for p in self.pagos if not p.pagado)
+
 
 # -------------------------------
 # Modelo AlumnoBaja
@@ -136,6 +141,13 @@ class Pago(db.Model):
     # Relaciones inversas
     alumno = db.relationship('Alumno', back_populates='pagos')
     concepto = db.relationship('ConceptoPago', back_populates='pagos')
+
+    # Metodo para calcular adecuadamente el total del pago utilizando una 
+    # propiedad hibrida, necesaria para mostrar los totales en el front
+    @hybrid_property
+    def total(self):
+       # Regresa el total neto del pago 
+        return (self.monto or 0.0) 
 
 
 # -------------------------------

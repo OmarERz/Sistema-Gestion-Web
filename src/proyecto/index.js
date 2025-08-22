@@ -7,6 +7,7 @@ import "../proyecto/styles.css";
 
 const Index = () => {
   const [alumnos, setAlumnos] = useState([]);
+  const [grupos, setGrupos] = useState([]);
   const [filtro, setFiltro] = useState("");
   const [vistaDetalle, setVistaDetalle] = useState(false);
   const [alumnoSeleccionado, setAlumnoSeleccionado] = useState(null);
@@ -15,22 +16,30 @@ const Index = () => {
 
   const fetchAlumnos = async () => {
     try {
-      const res = await fetch("/api/alumnos");
-      if (res.ok) {
-        const data = await res.json();
-        const conAdeudo = data.map((a) => ({
-          ...a,
-          adeudo_total: Math.floor(Math.random() * 5000), // simulado
-        }));
-        setAlumnos(conAdeudo);
+      const res = await fetch("/api/alumnos/");
+          if (!res.ok) throw new Error(await res.text());
+      const data = await res.json();
+      setAlumnos(data);
       }
-    } catch (error) {
+      catch (error) {
       console.error("Error al obtener alumnos:", error);
+    }
+  };
+
+  const fetchGrupos = async () => {
+    try {
+      const res = await fetch("/api/grupos/");
+      if (!res.ok) throw new Error(await res.text());
+      const data = await res.json();
+      setGrupos(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Error al obtener grupos:", error);
     }
   };
 
   useEffect(() => {
     fetchAlumnos();
+    fetchGrupos();
   }, []);
 
   const mostrarDetalleAlumno = async (id) => {
@@ -50,6 +59,9 @@ const Index = () => {
     }
   };
 
+  const getGrupoNombre = (id) =>
+    grupos.find((g) => g.id === id)?.nombre || "Sin grupo";
+
   const alumnosFiltrados = alumnos.filter((a) =>
     `${a.nombre} ${a.apellido_paterno} ${a.apellido_materno}`
       .toLowerCase()
@@ -64,8 +76,10 @@ const Index = () => {
         <Link className="nav-item" to="/gestionGrupos">Gestión de Grupos</Link>
         <Link className="nav-item" to="/registroPagos">Registro de Pagos</Link>
         <Link className="nav-item" to="/historialPagos">Historial de Pagos</Link>
-        <Link className="nav-item" to="/">Gestión de Bajas</Link>
+        <Link className="nav-item" to="/bajaAlumno">Gestión de Bajas</Link>
         <Link className="nav-item" to="/descarga">Descarga de Reportes</Link>
+        <Link className="nav-item" to="/gastos">Gastos</Link>
+        <Link className="nav-item" to="/maestros">Maestros</Link>
       </nav>
 
       <main className="main-content">
@@ -98,9 +112,9 @@ const Index = () => {
                     <tr key={a.id}>
                       <td>{a.nombre} {a.apellido_paterno} {a.apellido_materno}</td>
                       <td>{a.grado}</td>
-                      <td>{a.grupo_id}</td>
-                      <td style={{ color: a.adeudo_total > 0 ? 'red' : 'green' }}>
-                        ${a.adeudo_total}
+                      <td>{getGrupoNombre(a.grupo_id)}</td>
+                      <td style={{ color: (a.adeudo_total || 0) > 0 ? 'red' : 'green' }}>
+                        ${Number(a.adeudo_total || 0).toFixed(2)}
                       </td>
                       <td>
                         <button className="btn btn-primary" onClick={() => mostrarDetalleAlumno(a.id)}>

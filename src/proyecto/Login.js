@@ -39,9 +39,14 @@ function Login() {
         },
         body: JSON.stringify({ usuario: user, contrasena: password })
       });
+
       const data = await response.json();
       console.log("Respuesta del servidor", data);
+
       if (data.valido) {
+        const token = data.token || 'ok'; // usa el token real si tu API lo envía
+        localStorage.setItem('token', token);
+
         console.log("Inicio de sesión exitoso");
         navigate('/index');
       } else {
@@ -83,10 +88,7 @@ function Login() {
           Ingresar
         </button>
 
-        {/* Nuevo enlace para registrar profesor */}
-        <p className="register-link">
-          ¿No tienes una cuenta? <Link to="/registro">Registrar Profesor</Link>
-        </p>
+        
       </div>
     </>
   );

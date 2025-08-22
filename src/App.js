@@ -4,18 +4,17 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Importa el componente Login desde la carpeta "proyecto"
 import Login from "./proyecto/Login";
+// Importa el componente ProtectedRoute desde la carpeta "proyecto"
+import ProtectedRoute from "./proyecto/ProtectedRoute";
 // Importa el componente Registro desde la carpeta "proyecto"
 import Registro from "./proyecto/Registro";
 
 // Importa el componente index desde la carpeta "proyecto"
 import Menu from "./proyecto/Index";
 
-
 import Gestion_Grupos from "./proyecto/gestion_grupos/GestionGrupos";
 
-
 import Resgistro_Pagos from "./proyecto/registro_pagos/RegistroPago";
-
 
 import Historial_Pagos from "./proyecto/historial_pagos/HistorialAlumno";
 
@@ -40,31 +39,31 @@ function App() {
         {/* Ruta raíz que carga el componente Login */}
         <Route path="/" element={<Login />} />
         {/* Ruta "/registro" que carga el componente de dash board*/}
-        <Route path="/registro" element={<Registro/>}/>
+        <Route path="/registro" element={<ProtectedRoute> <Registro/> </ProtectedRoute>}/>
         {/* Ruta '/Index' que carga el componente de dashboard
         <Route path="/" element={<Menu />}/> */}
-        <Route path="/index" element={<Menu/>}/>
+        <Route path="/index" element={<ProtectedRoute> <Menu/> </ProtectedRoute>}/>
 
         {/* Ruta "/gestionGrupos" que carga el componente de dash board*/}
-        <Route path="/gestionGrupos" element={<Gestion_Grupos/>}/>
+        <Route path="/gestionGrupos" element={<ProtectedRoute><Gestion_Grupos/></ProtectedRoute>}/>
 
         {/* Ruta "/registroPagos" que carga el componente de dash board*/}
-        <Route path="/registroPagos" element={<Resgistro_Pagos/>}/>
+        <Route path="/registroPagos" element={<ProtectedRoute><Resgistro_Pagos/></ProtectedRoute>}/>
 
         {/* Ruta "/HistorialPagos" que carga el componente de dash board*/}
-        <Route path="/historialPagos" element={<Historial_Pagos/>}/>
+        <Route path="/historialPagos" element={<ProtectedRoute><Historial_Pagos/></ProtectedRoute>}/>
 
         {/* Ruta "/bajaAlumno" que carga el componente de dash board*/}
-        <Route path="/bajaAlumno" element={<Baja_Alumno/>}/>
+        <Route path="/bajaAlumno" element={<ProtectedRoute><Baja_Alumno/></ProtectedRoute>}/>
 
         {/* Ruta "/gastos" que carga el componente de dash board*/}
-        <Route path="/gastos" element={<Gastos/>}/>
+        <Route path="/gastos" element={<ProtectedRoute><Gastos/></ProtectedRoute>}/>
 
         {/* Ruta "/maestros" que carga el componente de dash board*/}
-        <Route path="/maestros" element={<Maestros/>}/>
+        <Route path="/maestros" element={<ProtectedRoute><Maestros/></ProtectedRoute>}/>
 
         {/* Ruta "/crud" que carga el componente de dash board*/}
-        <Route path="/descarga" element={<Descarga/>}/>
+        <Route path="/descarga" element={<ProtectedRoute><Descarga/></ProtectedRoute>}/>
        
 
         

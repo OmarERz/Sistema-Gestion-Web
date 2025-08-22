@@ -38,7 +38,6 @@ def listar_pagos():
         'recargo': p.recargo,
         'pagado': p.pagado,
         'estado_pago': p.estado_pago,
-        'alumno_id': p.alumno_id,
         'concepto_id': p.concepto_id
     } for p in pagos]), 200
 

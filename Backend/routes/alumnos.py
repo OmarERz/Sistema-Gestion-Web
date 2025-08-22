@@ -20,7 +20,8 @@ def listar_alumnos():
         'activo': a.activo,
         'grupo_id': a.grupo_id,
         'tutor_id': a.tutor_id,
-        'ciclo_id': a.ciclo_id
+        'ciclo_id': a.ciclo_id,
+        "adeudo_total": float(a.adeudo_total or 0.0)
     } for a in alumnos]), 200
 
 # 2) GET /api/alumnos/<int:id> => obtiene un alumno específico
@@ -37,7 +38,8 @@ def obtener_alumno(id):
         'activo': a.activo,
         'grupo_id': a.grupo_id,
         'tutor_id': a.tutor_id,
-        'ciclo_id': a.ciclo_id
+        'ciclo_id': a.ciclo_id,
+        "adeudo_total": float(a.adeudo_total or 0.0)
     }), 200
 
 # 3) POST /api/alumnos/ => crea un alumno nuevo

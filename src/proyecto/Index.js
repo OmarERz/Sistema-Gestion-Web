@@ -113,8 +113,8 @@ const Index = () => {
                       <td>{a.nombre} {a.apellido_paterno} {a.apellido_materno}</td>
                       <td>{a.grado}</td>
                       <td>{getGrupoNombre(a.grupo_id)}</td>
-                      <td style={{ color: a.adeudo_total > 0 ? 'red' : 'green' }}>
-                        ${a.adeudo_total}
+                      <td style={{ color: (a.adeudo_total || 0) > 0 ? 'red' : 'green' }}>
+                        ${Number(a.adeudo_total || 0).toFixed(2)}
                       </td>
                       <td>
                         <button className="btn btn-primary" onClick={() => mostrarDetalleAlumno(a.id)}>
